@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			
+			<!-- Base css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/normalize.css')}}">
+			<link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}"> 
+			
+			<!-- page css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+			
+
+			<title>이클립스 개인 페이지</title>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+                {% include 'header.html' %}
+			</div>
+			<!-- header -->
+			<div id="contents-log">
+				<div id="cont-nav">
+					<div class="container">
+						{% include 'nav.html' %}
+					</div>
+				</div>
+			
+				<div id="cont-log">
+					<form action="{{url_for('auth.login')}}" id="login-form" method="POST">
+						{{ form.csrf_token }}
+						{% include "form_errors.html" %}
+	                    <label class="legend">아이디</label>
+	                    <input name="userID" type="text" value="{{ form.userID.data or '' }}" required>
+	                    <label class="legend">패스워드</label> 
+	                    <input name="userPasswd" type="password" value="{{ form.userPasswd.data or '' }}" required> 
+	                    <input type="submit" name="key" value="login">
+	                    <a class="legend" style="float:right;" href="{{url_for('auth.signup')}}">회원가입</a>
+       			  </form>
+				</div>
+			</div>	
+			<!-- contents -->
+			<div id="footer">
+                {% include 'footer.html' %}
+			</div>
+		</div>
+		<!-- wrap -->
+	</body>
+</html>

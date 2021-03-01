@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Base css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/normalize.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <!-- page css -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+
+
+    <title>이클립스 개인 페이지</title>
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $(".page-link").on('click', function() {
+                $("#page").val($(this).data("page"));
+                $("#searchForm").submit();
+            });
+            $("#btn_search").on('click', function() {
+                $("#kw").val($(".kw").val());
+                $("#page").val(1);  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
+                $("#searchForm").submit();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    {%- with messages = get_flashed_messages() %} {% if messages %}
+    <script>
+        alert('{{ messages|tojson|safe }}');
+    </script>
+    {% endif %} {% endwith -%}
+    <div id="wrap">
+        <div id="header">
+            {% include 'header.html' %}
+        </div>
+        <!-- header -->
+        <div id="contents-log">
+            <div id="cont-nav">
+                <div class="container">
+                    {% include 'nav.html' %}
+                </div>
+            </div>
+            <div id="cont-cont">
+                <div class="ss-cont">
+                    <div class="row justify-content-end my-3">
+                        <div class="col-4 input-group" style="height: 10px;">
+                            <input type="text" class="form-control kw" value="{{ kw or '' }}">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="btn_search">검색</button>
+                            </div>
+                            <a class="btn-lec2" href="{{url_for('evaluate.register')}}" style="margin-left:5px;">등록하기</a>
+
+                        </div>
+                        <form id="searchForm" method="get" action="{{ url_for('evaluate._list') }}">
+                            <input type="hidden" id="kw" name="kw" value="{{ kw or '' }}">
+                            <input type="hidden" id="page" name="page" value="{{ page }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- card -->
+
+            {% if list_ %} {% for li in list_.items %}
+                <div class="card">
+                    <a href="{{url_for('evaluate.detail',evaluate_id=li.evalID)}}" style="color: black;">
+
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-left">강의명: {{li.lec_name}}&nbsp;</div>
+                            <div class="col-leftt"><small>교수:{{li.pro_name}}</small></div>
+                            <div class="col-leftt" style="margin-left:5px;float:right;">작성자: {{li.writer}}&nbsp;</div>
+                            <div class="col-leftt" style="color:red;margin-left:5px;float:right;">강의력: {{ li.lec_skill }}</div>
+                            <div class="col-leftt" style="color:red;float:right;">난이도: {{ li.lec_level }}</div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            제목 : {{li.content_title}}
+                        </h5>
+                        <!-- <div class="col-text-right">
+                        <a href="/jungjaeho_free/EvalutionServlet?key=good&key2=<%=evalutionVO.getUserID()%>&key3=<%=evalutionVO.getEvalutionID()%>">수정</a>
+                        <a href="/jungjaeho_free/EvalutionServlet?key=del&key2=<%=evalutionVO.getUserID()%>&key3=<%=evalutionVO.getEvalutionID()%>">삭제</a>
+                    </div> -->
+                        <!-- <div class="row">
+
+                        <div class="col-text-right">
+                            <a href="/jungjaeho_free/EvalutionServlet?key=good&key2=<%=evalutionVO.getUserID()%>&key3=<%=evalutionVO.getEvalutionID()%>">수정</a>
+                            <a href="/jungjaeho_free/EvalutionServlet?key=del&key2=<%=evalutionVO.getUserID()%>&key3=<%=evalutionVO.getEvalutionID()%>">삭제</a>
+                        </div>
+                    </div> -->
+                    </div>
+                </a>
+                </div>
+             {% endfor %} {% else %} {% endif %}
+            <ul class="pagination justify-content-center">
+                <!-- 이전페이지 -->
+                {% if list_.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ list_.prev_num }}" href="#">이전</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+                </li>
+                {% endif %} {% for page_num in list_.iter_pages() %} {% if page_num %} {% if page_num != list_.page %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ page_num }}" href="#">{{ page_num }}</a>
+                </li>
+                {% else %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">{{ page_num }}</a>
+                </li>
+                {% endif %} {% else %}
+                <li class="disabled">
+                    <a class="page-link" href="#">...</a>
+                </li>
+                {% endif %} {% endfor %}
+                <!-- 다음페이지 -->
+                {% if list_.has_next %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ list_.next_num }}" href="#">다음</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- 페이징처리 끝 -->
+
+        </div>
+        <!-- contents -->
+        <!-- <div id="footer">
+                {% include 'footer.html' %}
+			</div> -->
+
+    </div>
+</body>
+
+</html>

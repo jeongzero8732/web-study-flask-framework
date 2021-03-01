@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			
+			<!-- Base css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/normalize.css')}}">
+			<link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}"> 
+			
+			<!-- page css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+			
+
+			<title>이클립스 개인 페이지</title>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+                {% include 'header.html' %}
+			</div>
+			<!-- header -->
+			<div id="contents-sign">
+				<div class="container">
+					{% include 'nav.html' %}
+				</div>
+				<div id="sign">
+		        <br><br>
+		        
+		        <div style="text-align:center;">
+		        	<font size="6" color="gray">강의평가 등록</font>
+		        </div>
+		        <br><br>
+		        <form action="{{url_for('evaluate.register')}}" method="POST">
+					{{ form.csrf_token }}
+					{% include "form_errors.html" %}
+		            <table class="sign-table">
+		                <tr>
+		                    <td id="title">강의명</td>
+		                    <td><input type="text" value="{{form.lec_name.data or ''}}" name="lec_name" maxlength="20"></td>
+		                    <td id="title">교수명</td>
+		                    <td><input type="text" value="{{form.pro_name.data or ''}}" name="pro_name" maxlength="20"></td>
+		                </tr>
+		                        	                   
+		                <tr>
+		                    <td id="title">강의력</td>
+		                    <td>
+		                    	 <select value="{{form.lec_skill.data or ''}}" name="lec_skill">
+		                            <option>A</option>
+		                            <option>B</option>
+		                            <option>C</option>
+		                            <option>D</option>                        
+		                        </select>
+		                    </td>
+							<td id="title">난이도</td>
+		                    <td>
+		                        <select value="{{form.lec_level.data or ''}}" name="lec_level">
+		                            <option>A</option>
+		                            <option>B</option>
+		                            <option>C</option>
+		                            <option>D</option>                        
+		                        </select>
+		                    </td>
+		                </tr>
+		 		               
+		            </table>
+		            <br>
+		             <table class="sign-table3">
+		             	<tr>
+		             		<td id="title">제목</td>
+		             		<td><input type="text" size="54.5" name="content_title" value="{{form.content_title.data or ''}}"/></td>
+		             	</tr>
+		                <tr>
+		                    <td id="title">내용</td>		                   
+		                    <td>
+		                        <textarea name="eval_contents" value="{{form.eval_contents.data or ''}}" maxlength="2048" style="height:180px;width:430px;"></textarea>
+		                    </td>
+		                </tr>
+		             </table>
+		             <div class="reset_sign" style="text-align:center;">
+			           	 <input type="submit" name="key" value="등록" />			        
+			           	 <a href="{{url_for('evaluate.evaluate')}}">취소</a>
+		            </div>
+		        </form>
+		   		</div>
+			</div>
+			<!-- contents -->
+			<div id="footer">
+			<?php include($_SERVER["DOCUMENT_ROOT"].'/include/footer.html');?>
+
+			</div>
+		</div>	
+	</body>
+</html>

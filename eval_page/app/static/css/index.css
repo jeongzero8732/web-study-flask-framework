@@ -1,0 +1,367 @@
+@charset "UTF-8";
+
+/*이미지를 표현하는 방법
+	1. html 태그를 통해서 표현하는 것 -> 의미가 있는 이미지에서 주로 사용
+	2. css 속성을 통해서 표현하는 것 -> 의미가 없는 이미지
+	repeat-x : x축으로 반복된 이미지 -- 창을 줄여도 모양유지를 위해 
+	center top : 고정위치
+*/
+
+body {
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+
+/*layout*/
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 19px;
+}
+
+#header {
+    width: 100%;
+    height: 207px;
+    background-color: #ffffff;
+    background: url(../img/mainheader.jpg) repeat-x center top;
+}
+
+#contents {
+    width: 100%;
+    min-height: 100%;
+    background-color: #f2faff;
+}
+
+#contents-log {
+    width: 100%;
+    background-color: #f2faff;
+}
+
+#contents-sign {
+    width: 100%;
+    height: 549px;
+    background-color: #f2faff;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+/*container*/
+
+.container {
+    position: relative;
+    width: 727px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 auto;
+}
+
+.select-container {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.ss-cont {
+    margin-left: 300px;
+}
+
+
+/*contents layout*/
+
+#cont-nav {
+    width: 100%;
+    height: 47px;
+    background-color: white;
+}
+
+#cont-tit {
+    width: 100%;
+    height: 291px;
+    background-color: #dbeef9;
+}
+
+#cont-cont {
+    margin-bottom: 50px;
+}
+
+
+/*quick-menu*/
+
+.quick-menu {
+    text-align: right;
+}
+
+.quick-menu a {
+    color: #000;
+    padding: 5px 0 0 10px;
+    display: inline-block;
+}
+
+.quick-menu a:hover {
+    color: #ccc
+}
+
+
+/*title*/
+
+.title {}
+
+.title h1 {
+    position: absolute;
+    left: 291px;
+    top: 147px;
+}
+
+.title h1 a {
+    background-color: #4aa8d4;
+    font-size: 18px;
+    color: #fff;
+    text-transfrom: capitalize;
+    padding: 5px 15px;
+    display: block;
+}
+
+.title p {
+    background-color: #2698cb;
+    font-size: 32px;
+    position: absolute;
+    color: #fff;
+    padding: 5px 15px;
+    left: 215px;
+    top: 78px;
+}
+
+
+/*nav*/
+
+#Nav-Menu {
+    text-align: center;
+    background-color: white;
+}
+
+#Nav-Menu ul {
+    list-style: none;
+    background: white;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+#Nav-Menu li {
+    display: inline-block;
+}
+
+#Nav-Menu .menubar {
+    text-decoration: none;
+    color: #84b9a7;
+    display: block;
+    width: 100px;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: Hevertica;
+}
+
+#Nav-Menu .menubar:hover {
+    color: red;
+    background: #000;
+    transition: 0.4s;
+}
+
+
+/*cont layout*/
+
+.cont {
+    overflow: hidden;
+    padding-top 30px;
+}
+
+.cont .box {
+    width: 191px;
+    height: 160px;
+    float: left;
+    margin: 0px 8px 30px 7px;
+    padding-right: 41px;
+}
+
+.cont .box1 {
+    border-right: 1px solid #c8c8c8;
+}
+
+.cont .box2 {
+    border-right: 1px solid #c8c8c8;
+}
+
+.cont .box3 {
+    mrgin-right: 0;
+    padding-right: 0;
+}
+
+.cont .box4 {
+    border-right: 1px solid #c8c8c8;
+}
+
+.cont .box5 {
+    border-right: 1px solid #c8c8c8;
+}
+
+.cont .box6 {
+    mrgin-right: 0;
+    padding-right: 0;
+}
+
+
+/*footer*/
+
+.foot {
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+/*button*/
+
+.form-control1 {
+    width: 73px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 18px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.form-control2 {
+    width: 183px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 18px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.btn-lec1 {
+    width: 60px;
+    height: 30px;
+    padding-left: 1px;
+    font-size: 18px;
+    color: #000;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.btn-lec2 {
+    padding: 4.6px;
+    padding-bottom: 3px;
+    padding-top: 6px;
+    width: 80px;
+    height: 30px;
+    padding-left: 1px;
+    font-size: 18px;
+    color: #000;
+    border-radius: 3px;
+}
+
+
+/*card*/
+
+.card {
+    margin-right: 300px;
+    margin-left: 300px;
+    border: 1px solid black;
+    padding: 14px;
+    margin-bottom: 18px;
+}
+
+.col-left {
+    display: inline;
+    font-weight: bold;
+}
+
+.col-leftt {
+    display: inline;
+}
+
+.col-right {
+    display: inline;
+    float: right;
+}
+
+.col-text-right {
+    display: inline;
+    float: right;
+}
+
+
+/*login*/
+
+#login-form {
+    width: 200px;
+    margin: 100px auto;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+#login-form input,
+#login-form label {
+    display: block;
+}
+
+#login-form label {
+    margin-top: 10px;
+}
+
+#login-form input {
+    margin-top: 5px;
+}
+
+#login-form input {
+    margin: 10px auto;
+}
+
+
+/*회원가입*/
+
+#sign {
+    width: 530px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+table {
+    border: 3px solid skyblue;
+}
+
+td {
+    border: 1px solid skyblue;
+}
+
+#title {
+    background-color: skyblue;
+}
+
+.sign-table {
+    margin: auto;
+}
+
+.sign-table2 {
+    margin-left: 78px;
+    margin-bottom: 14px;
+}
+
+.sign-table3 {
+    margin-left: 30px;
+    margin-bottom: 14px;
+}

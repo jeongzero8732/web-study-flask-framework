@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="quick-menu">
+		{% if g.user %}
+			<a>{{ g.user.userID }} 님</a>
+			<a href="{{url_for('auth.logout')}}">로그아웃</a>
+		{% else %}	
+			<a href="{{url_for('auth.login')}}">로그인</a>
+		{% endif %}
+			<a href="http://www.kpu.ac.kr/index.do?sso=ok" target="_blank">학교홈페이지가기</a>
+	</div>
+	<div class="title">
+		<p>이클래스 개인 페이지</p>
+		<h1><a href="http://www.kpu.ac.kr/index.do?sso=ok" target="_blank">www.kpu.ac.kr</a></h1>
+	</div>
+</div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			
+			<!-- Base css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/normalize.css')}}">
+			<link rel="stylesheet" href="{{url_for('static',filename='css/reset.css')}}"> 
+			
+			<!-- page css -->
+			<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+			<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+			<title>이클립스 개인 페이지</title>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+                {% include 'header.html' %}
+			</div>
+			<!-- header -->
+			<div id="contents-sign">
+				<div id="cont-nav">
+					{% include 'nav.html' %}
+				</div>
+				<div id="sign">
+		        <br><br>
+		        
+		        <div style="text-align:center;">
+		        	<font size="6" color="gray">회원가입</font>
+		        </div>
+		        <br><br>
+		        <form action="{{url_for('auth.signup')}}" method="POST">
+					{{ form.csrf_token }}
+					{% include "form_errors.html" %}
+		            <table class="sign-table">
+		                <tr>
+		                    <td id="title">아이디</td> 
+		                    <td>
+		                        <input type="text" name="userID" value="{{ form.userID.data or '' }}"maxlength="20" required> 
+		                    </td>
+		                </tr>
+		                        
+		                <tr>
+		                    <td id="title">비밀번호</td> 
+		                    <td>
+		                        <input type="password" name="userPasswd" value="{{ form.userPasswd.data or '' }}"maxlength="15" required>
+		                    </td>
+		                </tr>
+		                    
+		                <tr>
+		                    <td id="title">이름</td>
+		                    <td>
+		                        <input type="text" name="userName" maxlength="40" value="{{ form.userName.data or '' }}" required>
+		                    </td>
+		                </tr>
+		                    
+		                <tr>
+		                    <td id="title">성별</td>
+		                    <td>
+		                        <input type="radio" name="userSex" value="남" checked>남
+		                        <input type="radio" name="userSex" value="여" checked>여
+		                    </td>
+		                </tr>
+		            </table>
+		            <br>
+		             
+		             <div class="reset_sign" style="text-align:center;">
+			           	 <input type="submit" name="key" value="ok"/>
+			           	 <input type="reset" value="cancel">
+		            </div>
+		        </form>
+		   		</div>
+			</div>
+			<!-- contents -->
+			<div id="footer">
+                {% include 'footer.html' %}
+			</div>
+		</div>	
+		<!-- wrap -->
+	</body>
+</html>
