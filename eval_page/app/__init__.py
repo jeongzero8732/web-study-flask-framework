@@ -15,8 +15,9 @@ def create_app(config_name):
     app = Flask(__name__)
 # --------------------------------- [edit] ---------------------------------- #    
     app.config.from_object(config_by_name[config_name])
+    app.config.update(SECRET_KEY='testtest')
     # ORM
-    # db.init_app(app)
+    db.init_app(app)
     # migrate.init_app(app, db)
     from .views import auth,evaluate
     app.register_blueprint(auth.bp)

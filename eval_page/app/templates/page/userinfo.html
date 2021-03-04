@@ -33,7 +33,7 @@
                 </div>
                 <br><br>
                 <form action="{{url_for('auth.user_update')}}" method="POST">
-                    {{ form.csrf_token }} {% include "form_errors.html" %}
+                    {{ form.hidden_tag() }} {% include "form_errors.html" %}
                     <table class="sign-table">
                         <tr>
                             <td id="title">아이디</td>

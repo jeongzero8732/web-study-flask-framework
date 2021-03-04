@@ -3,3 +3,5 @@ Flask-Migrate
 Flask-Script
 Flask-WTF
 uWSGI
+pymysql
+cryptography

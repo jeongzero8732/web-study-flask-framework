@@ -3,7 +3,7 @@ from app import db
 class User(db.Model):
         __tablename__ = "user"
         userID=db.Column(db.String(20),primary_key=True)
-        userPasswd=db.Column(db.String(20),nullable=False)
+        userPasswd=db.Column(db.String(150),nullable=False)
         userName=db.Column(db.String(20),nullable=False)
         userSex=db.Column(db.String(20),nullable=False)
 

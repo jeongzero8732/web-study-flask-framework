@@ -34,7 +34,8 @@
                 </div>
                 <br><br>
                 <form action="{{url_for('evaluate.update',evaluate_id=evaluate_.evalID)}}" method="POST">
-                    {{ form.csrf_token }}{% include "form_errors.html" %}
+                    {{ form.csrf_token }}
+                    {% include "form_errors.html" %}
                     <table class="sign-table">
                         <tr>
                             <td id="title">강의명</td>
